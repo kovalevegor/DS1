@@ -98,6 +98,48 @@ for (auto x:v)
 
 #### Вы должны написать программу на языке С++, которая будет генерировать такие файлы. Программа должна использовать библиотеку testlib.h. На вход программе подаются: имя файла, строка инициализации биьблиотеки (для вызова функции setName()), количество групп тестов, количество тестов в каждой группе, последовательность длин тестов в каждой группе, диапазон случайных чисел для теста. Программа должна читать все эти параметры из текстового файла pfrfm.txt. Для генерации требуется реализовать алгоритм генеации различных случайных чисел. Для ускорения вывода следует обязательно отключить синхронизацию потоков и использовать иптимизацию кода по времени. Программы с медленной генерацией тестов не будут проверяться.
 
+```cpp
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <fstream>
+#include <set>
+#include <vector>
+#include <string>
+
+#define _CRT_SECURE_NO_WARNINGS
+#include "testlib.h"
+
+using namespace std;
+int main(int argc, char *argv[]) {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    ifstream cin("param.txt");
+    string fname, initstr;
+    getline(cin, fname);
+    getline(cin, initstr);
+    registerGen(argc, argv, 1);
+    setName(initstr.c_str());
+    ofstream txt(fname);
+    int groups, tests;
+    cin >> groups >> tests;
+    vector<int> len(groups);
+    for (int& x : len)
+        cin >> x;
+    int from, to;
+    cin >> from >> to;
+    txt << groups << endl;
+    for (int i = 0; i < groups; i++) {
+        txt << tests << " " << len[i] << endl;
+        for (int j = 0; j < tests; j++) {
+            txt << rnd.next(from, to); //вместо этой строчки написать нормальную генерацию загоняем все числа в множество, перегоняем их в вектор. для вектора вызываем shufle. выводим вектор в файл
+            txt << endl;
+        }
+    }
+    return 0;
+}
+```
+
 #### 5. В этом задании вам надо будет написать программу для выполнения сотировки последовательности целых чисел в С++ разными способами. Их достаточно много. Выберем пять следующих способов.
 
 - sort
@@ -138,9 +180,62 @@ double srt1(vector <int> V) {
 
 При написании прогрммы следует обязательно отключать синхронизацию потоков и использовать оптимизацию кода по времени.
 
+```cpp
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <fstream>
+#include <set>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+
+#define _CRT_SECURE_NO_WARNINGS
+#include "testlib.h"
+
+using namespace std;
+
+double srt1(vector<int> v) {
+    auto start = chrono::high_resolution_clock::now();
+    sort(v.begin(), v.end());
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double>dur = end - start;
+    return dur.count();
+
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    ifstream cin("tests.txt");
+    int groups, tests;
+    cin >> groups;
+    vector <double> total(5);
+    for (int i = 0; i < groups; i++) {
+        int tests, len;
+        cin >> tests >> len;
+        for (int j = 0; j < tests; j++) {
+            vector<int>v(len);
+            for (int& x : v)
+                cin >> x; // закончено чтение
+            total[0] += min({srt1(v),srt1(v),srt1(v)});
+            // str2
+            // srt3
+            // srt4
+            // srt5
+
+        }
+    }
+    return 0;
+}
+```
+
+
+
+
 #### 6. Используя программы из предыдущих заданий, определите, вектор какой размера сортируется на вашем компьютере примерно за секунду. Для этого сделайте тестовый файл из одной группы тестов. В группе должно быть пять тестов некоторой длины _m_. Подберите это число так, чтобы среднее время работы саного быстрого метода сортивовки в файле protocol.txt равнялось примерной одной секунде. Будет достаточно, если число _m_ будет округлено до 100000, то есть число будет оканчиваться на 5 нулей. В отчете запишиет, какие длины тестов вы пробовали и какое время работы получили.
 
 #### 7. Используя программы из предыдущих заданий и найденное ранее число _m_, создайте тестовый файл из 10 групп тестов. В каждой группе должно быть по три теста с длинами равными _0:2m, 0:4m, 0:6m, 0:8m, m, 1:2m, 1:4m, 1:6m, 1:8m, 2m_. Проверьте время сортировки на этих группах тестов. В отчет запишите данне из файла protocol.txt
+
 
 #### 8.
 
