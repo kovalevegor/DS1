@@ -66,6 +66,16 @@
 
 `-l<library>` - Указание конкретной библиотеки для линковки
 
+### **Компиляция программы на языке C++/CLI из командной строки**
+
+[src](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compiling-a-cpp-cli-program-on-the-command-line?view=msvc-170)
+
+[Предварительные требования](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compiling-a-cpp-cli-program-on-the-command-line?view=msvc-170#prerequisites)
+
+[Компиляция программы на C++/CLI](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compiling-a-cpp-cli-program-on-the-command-line?view=msvc-170#compiling-a-ccli-program)
+
+[]()
+
 #### 2. Для используемого вами транслятора подготовьте список основных опций трансляции. В него обязательно должны входить следующие опции: оптимизация кода, выбора стандарта языка, работы с предупреждениями и другие, которые покажутся вам важными. Сделайте краткое описание этих опций.
 
 #### 3. Напишите программы с использованием особенностей С++11 и С++17. Выполните их трансляцию с указанием стандарта языка. Запустите эти программы и проверьте их работоспособность. Для С++11 можно использовать инициализации, на**пример:**
