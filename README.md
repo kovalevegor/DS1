@@ -68,13 +68,69 @@
 
 ### **Компиляция программы на языке C++/CLI из командной строки**
 
-[src](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compiling-a-cpp-cli-program-on-the-command-line?view=msvc-170)
+[Пошаговое руководство. Компиляция программы на языке C из командной строки](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compile-a-c-program-on-the-command-line?view=msvc-170)
 
 [Предварительные требования](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compiling-a-cpp-cli-program-on-the-command-line?view=msvc-170#prerequisites)
 
 [Компиляция программы на C++/CLI](https://learn.microsoft.com/ru-ru/cpp/build/walkthrough-compiling-a-cpp-cli-program-on-the-command-line?view=msvc-170#compiling-a-ccli-program)
 
-[]()
+### **Программа суммы**
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    int a, b;
+    std::cin >> a >> b;
+    std::cout << a + b << '\n';
+}
+```
+
+### **Команды для трансляции программы**
+```txt
+C:\Program Files\Microsoft Visual Studio\2022\Community>cd c:\
+c:\ md c:\main
+c:\ cd c:\main
+
+c:\main>dir
+Том в устройстве C имеет метку Eidos
+ Серийный номер тома: 9C37-A8CD
+
+ Содержимое папки c:\main
+
+13.02.2023  14:34    <DIR>          .
+13.02.2023  14:33               698 main.cpp
+13.02.2023  14:46           246 784 main.exe
+13.02.2023  14:46           151 526 main.obj
+               3 файлов        399 008 байт
+               1 папок  498 085 363 712 байт свободно
+
+c:\main notepad main.cpp
+
+c:\main>cl main.cpp
+Оптимизирующий компилятор Microsoft (R) C/C++ версии 19.34.31937 для x86
+(C) Корпорация Майкрософт (Microsoft Corporation).  Все права защищены.
+
+main.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ostream(287): warning C4530: Использован обработчик исключений C++, но семантика уничтожения объектов не включена. Задайте параметр /EHsc
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\ostream(272): note: во время компиляции функции-члена класс шаблон "std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)"
+main.cpp(13): note: выполняется компиляция ссылки на экземпляр шаблон функции "std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)"
+main.cpp(13): note: выполняется компиляция ссылки на экземпляр класс шаблон функции "std::basic_ostream<char,std::char_traits<char>>"
+Microsoft (R) Incremental Linker Version 14.34.31937.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:main.exe
+main.obj
+
+c:\main>main
+15 7
+22
+
+c:\main>
+```
+
+
 
 #### 2. Для используемого вами транслятора подготовьте список основных опций трансляции. В него обязательно должны входить следующие опции: оптимизация кода, выбора стандарта языка, работы с предупреждениями и другие, которые покажутся вам важными. Сделайте краткое описание этих опций.
 
