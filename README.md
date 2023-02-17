@@ -141,9 +141,10 @@ c:\main>
 
 ```cpp
 
-// C++14 Стандарт языка МЫ
+// Стандарт языка C++   Стандарт ISO C++14(std:c++14)
 
 #include <iostream>
+#include <algorithm>
 
 int main()
 {
@@ -152,8 +153,38 @@ int main()
     std::cout << std::min({ a,b,c });
     return 0;
 }
-
 ```
+
+**Результат отладки**
+```txt
+9 1 5
+1
+```
+
+```cpp
+
+// Стандарт языка C++   Стандарт ISO C++17(std:c++17)
+
+#include <iostream>
+#include <vector>
+
+int main()
+{
+    int a, b, c;
+    std::cin >> a >> b >> c;
+    std::vector v = { a, b, c };
+    for (auto x : v)
+        std::cout << x << ' ';
+    return 0;
+}
+```
+
+**Результат отладки**
+```txt
+1 a Ж
+1 0 -858993460
+```
+
 
 В отчет вставьте полные тексты программ и команды для их трансляции и запуска.
 
